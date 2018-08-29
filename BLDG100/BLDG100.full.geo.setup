@@ -1,0 +1,532 @@
+// Gamma attenuation - Full Model
+
+Name BLDG100
+Version 1.0
+
+SurroundingSphere 1000. 0.0 0.0 0.0 1000.
+Include $(MEGALIB)/resource/examples/geomega/materials/Materials.geo
+// Universe volume
+Volume WorldVolume
+WorldVolume.Material Vacuum
+WorldVolume.Shape BRIK 577 577 577 //Cube inside sphere side length 1154 cm - 37.8 ft
+WorldVolume.Visibility 0
+WorldVolume.Color 1
+WorldVolume.Mother 0
+
+//Volume of ground below BLDG 100
+//36' x 36' x 2'
+Volume  Ground
+Ground.Material   Earth
+Ground.Shape  BRIK  548.64  548.64  30.48
+Ground.Color  41
+Ground.Position 0 0 -167.64
+Ground.Mother WorldVolume
+
+//Volume of Floor and Ceiling 27' x 27' x 0.5'
+Volume Base
+Base.Material Wood
+Base.Shape BRIK 411.48 411.48 7.62
+Base.Visibility 1
+Base.Color 12
+
+//Ceiling 10' tall
+//Volume centered at 10.25'
+Base.Copy Ceiling
+Ceiling.Position  0 0  312.42
+Ceiling.Mother WorldVolume
+
+//Floor 0' tall
+//Volume centered at -0.25'
+//Center of BLDG is top of floor at 0 0 0
+Base.Copy Floor
+Floor.Position  0 0  -7.62
+Floor.Mother WorldVolume
+
+//Lower section of wall under windows (West)
+//26.5' x 0.5' x 2'
+Volume LowWall
+LowWall.Material Wood
+LowWall.Shape BRIK 403.86  7.62  30.48
+
+//Lower section of wall under windows (North and South)
+//26.5' x 0.5' x 2'
+Volume VLowWall
+VLowWall.Material Wood
+VLowWall.Shape BRIK  7.62  403.86  30.48
+
+//Bottom section of wall below Floor  (East and West)
+//26.5' x 0.5' x 4'
+Volume  BWall
+BWall.Material  Wood
+BWall.Shape BRIK  403.86  7.62  60.96
+
+//Bottom section of wall below Floor  (North and South)
+//26.5' x 0.5' x 4'
+Volume  VBWall
+VBWall.Material  Wood
+VBWall.Shape BRIK  7.62  403.86  60.96
+
+//West Lower section of wall under windows
+LowWall.Copy WLow
+WLow.Position 7.62 -403.86  30.48
+WLow.Mother WorldVolume
+
+//West Bottom section of wall below Floor
+BWall.Copy  WBottom
+WBottom.Position  7.62 -403.86  -76.2
+WBottom.Mother WorldVolume
+
+//West Upper section of wall above windows
+LowWall.Copy WUp
+WUp.Position 7.62 -403.86  274.32
+WUp.Mother WorldVolume
+
+//West Wall Section - Left of Windows
+// 3' x 0.5' x 6'
+Volume Wall9
+Wall9.Material Wood
+Wall9.Shape BRIK  45.72  7.62  91.44
+Wall9.Position  -350.52  -403.86  152.4
+Wall9.Mother  WorldVolume
+
+//West Wall Section - Between Windows
+// 12' x 0.5' x 6'
+Volume Wall10
+Wall10.Material Wood
+Wall10.Shape BRIK  182.88  7.62  91.44
+Wall10.Position  0.0  -403.86  152.4
+Wall10.Mother  WorldVolume
+
+//West Wall Section - Right of Windows
+// 3.5' x 0.5' x 6'
+Volume Wall11
+Wall11.Material Wood
+Wall11.Shape BRIK  53.34  7.62  91.44
+Wall11.Position  358.14  -403.86  152.4
+Wall11.Mother  WorldVolume
+
+//South Lower section of wall under windows
+VLowWall.Copy SLow
+SLow.Position  403.86 7.72  30.48
+SLow.Mother WorldVolume
+
+//South Bottom section of wall below Floor
+VBWall.Copy SBottom
+SBottom.Position  403.86 7.72  -76.2
+SBottom.Mother WorldVolume
+
+//South Upper section of wall above windows
+VLowWall.Copy SUp
+SUp.Position  403.86 7.72  274.32
+SUp.Mother WorldVolume
+
+//South Wall Section - Left of Windows
+// 0.5' x 1' x 6'
+Volume Wall12
+Wall12.Material Wood
+Wall12.Shape BRIK  7.62  15.24  91.44
+Wall12.Position  403.86  -381  152.4
+Wall12.Mother  WorldVolume
+
+//South Wall Section - Between 1st and 2nd Windows
+// 0.5' x 1' x 6'
+Volume Wall13
+Wall13.Material Wood
+Wall13.Shape BRIK  7.62  15.24  91.44
+Wall13.Position  403.86  -228.6  152.4
+Wall13.Mother  WorldVolume
+
+//South Wall Section - Between 2nd and 3rd Windows
+// 0.5' x 4.5' x 6'
+Volume Wall14
+Wall14.Material Wood
+Wall14.Shape BRIK  7.62  68.58  91.44
+Wall14.Position  403.86  -22.86  152.4
+Wall14.Mother  WorldVolume
+
+//South Wall Section - Between 3rd and Bathroom Windows
+// 0.5' x 4.5' x 6'
+Volume Wall15
+Wall15.Material Wood
+Wall15.Shape BRIK  7.62  68.58  91.44
+Wall15.Position  403.86  236.22  152.4
+Wall15.Mother  WorldVolume
+
+//South Wall Section - Under Bathroom Window
+// 0.5' x 2' x 2'
+Volume Wall16
+Wall16.Material Wood
+Wall16.Shape BRIK  7.62  30.48  30.48
+Wall16.Position  403.86 335.28  91.44
+Wall16.Mother  WorldVolume
+
+//South Wall Section - After Bathroom Window
+// 0.5' x 1.5' x 6'
+Volume Wall17
+Wall17.Material Wood
+Wall17.Shape BRIK  7.62  22.86  91.44
+Wall17.Position  403.86 388.62  152.4
+Wall17.Mother  WorldVolume
+
+//Eastern Wall
+Volume EWall
+EWall.Material Wood
+EWall.Shape BRIK 403.86  7.62  152.4
+EWall.Position -7.62 403.86  152.4
+EWall.Mother WorldVolume
+
+//East Bottom section of wall below Floor
+BWall.Copy  EBottom
+EBottom.Position  -7.62 403.86  -76.2
+EBottom.Mother WorldVolume
+
+//North Lower section of wall under windows
+VLowWall.Copy NLow
+NLow.Position  -403.86 -7.72  30.48
+NLow.Mother WorldVolume
+
+//North Bottom section of wall below Floor
+VBWall.Copy NBottom
+NBottom.Position  -403.86 -7.72  -76.2
+NBottom.Mother WorldVolume
+
+//North Upper section of wall above windows
+VLowWall.Copy NUp
+NUp.Position  -403.86 -7.72  274.32
+NUp.Mother WorldVolume
+
+//North Wall Section - Before windows
+// 0.5' x 12.5' x 6'
+Volume Wall18
+Wall18.Material Wood
+Wall18.Shape BRIK  7.62  190.5  91.44
+Wall18.Position  -403.86 -220.98  152.4
+Wall18.Mother  WorldVolume
+
+//North Wall Section - Between windows
+// 0.5' x 3' x 6'
+Volume Wall19
+Wall19.Material Wood
+Wall19.Shape BRIK  7.62  45.72  91.44
+Wall19.Position  -403.86 137.16  152.4
+Wall19.Mother  WorldVolume
+
+//North Wall Section - After windows
+// 0.5' x 3' x 6'
+Volume Wall20
+Wall20.Material Wood
+Wall20.Shape BRIK  7.62  45.72  91.44
+Wall20.Position  -403.86 350.52 152.4
+Wall20.Mother  WorldVolume
+
+//Interior Walls
+//10' x 0.5' x 10'
+Volume InWall
+InWall.Material Wood
+InWall.Shape BRIK  152.4 7.62 152.4
+InWall.Visibility 1
+InWall1.Color 12
+
+//Wall1
+InWall.Copy Wall1
+Wall1.Position -243.84 -53.34 152.4
+Wall1.Mother WorldVolume
+
+//Wall 2
+InWall.Copy Wall2
+Wall2.Position -243.84 114.3 152.4
+Wall2.Mother WorldVolume
+
+//Wall 3
+InWall.Copy Wall3
+Wall3.Position 243.84 -53.34 152.4
+Wall3.Mother WorldVolume
+
+//Wall 4
+InWall.Copy Wall4
+Wall4.Position 243.84 251.46 152.4
+Wall4.Mother WorldVolume
+
+//Interior Shortwalls
+//0.5' x 3' x 10'
+
+Volume InSWall
+InSWall.Material Wood
+InSWall.Shape BRIK  7.62 45.72 152.4
+InSWall.Visibility 1
+InSWall.Color 12
+
+//Wall 5
+InSWall.Copy Wall5
+Wall5.Position -99.06 167.64 152.4
+Wall5.Mother WorldVolume
+
+//Wall 6
+InSWall.Copy Wall6
+Wall6.Shape BRIK  7.62 45.72 152.4
+Wall6.Position -99.06 350.52 152.4
+Wall6.Mother WorldVolume
+
+//Wall 7
+InSWall.Copy Wall7
+Wall7.Position 99.06 0.0 152.4
+Wall7.Mother WorldVolume
+
+//Wall 8
+InSWall.Copy Wall8
+Wall8.Position 99.06 198.12 152.4
+Wall8.Mother WorldVolume
+
+//4' x 6' windows 1/8" thickness (East and West)
+Volume 46Win
+46Win.Material PlateGlass
+46Win.Shape BRIK  60.96 0.15875 91.44
+46Win.Visibility 1
+46Win.Color 4
+
+//Window 1 - West Wall - Left Window
+46Win.Copy Win1
+Win1.Position -243.84 -403.86 152.4
+Win1.Mother WorldVolume
+
+//Window 2 - West Wall - Right Window
+46Win.Copy Win2
+Win2.Position 243.84 -403.86 152.4
+Win2.Mother WorldVolume
+
+//4' x 6' windows 1/8" thickness (North and South)
+Volume V46Win
+V46Win.Material PlateGlass
+V46Win.Shape BRIK  0.15875  60.96  91.44
+V46Win.Visibility 1
+V46Win.Color 4
+
+//Window 3 - South Wall - 1st Window
+V46Win.Copy Win3
+Win3.Position  403.86 -304.8  152.4
+Win3.Mother  WorldVolume
+
+//Window 4 - South Wall - 2nd Window
+V46Win.Copy Win4
+Win4.Position  403.86 -152.4  152.4
+Win4.Mother  WorldVolume
+
+//Window 5 - South Wall - 3rd Window
+V46Win.Copy Win5
+Win5.Position  403.86 106.68  152.4
+Win5.Mother WorldVolume
+
+//Window 6 - South Wall - Bathroom
+// 2' x 4' bathroom window 1/8" thickness
+Volume Win6
+Win6.Material PlateGlass
+Win6.Shape BRIK  0.15875 30.48 60.96
+Win6.Position 403.86 335.28  182.88
+Win6.Visibility 1
+Win6.Color 4
+Win6.Mother WorldVolume
+
+//Window 7 - North Wall - Middle room
+V46Win.Copy Win7
+Win7.Position  -403.86 30.48  152.4
+Win7.Mother WorldVolume
+
+//Window 8 - North Wall - Corner room
+V46Win.Copy Win8
+Win8.Position  -403.86  243.84  152.4
+Win8.Mother WorldVolume
+
+
+//Modeling the BlackBodyAbsorber
+//5'x5' Absorber 3' from East Wall, Centered on Source
+//This corresponds to 16.5'  -11'  0'
+//Volume BBdetector
+//BBdetector.Material Vacuum
+//BBdetector.Shape BRIK 0.1 76.2 76.2
+//BBdetector.Position 502.92 -335.28 0.0
+//BBdetector.Visibility 1
+//BBdetector.Color 7
+//BBdetector.Mother WorldVolume
+
+//BlackBodyAbsorber Characteristics
+//Scintillator                BBScint
+//BBScint.DetectorVolume      BBdetector
+//BBScint.SensitiveVolume     BBdetector
+//BBScint.NoiseThreshold      0.000001
+//BBScint.TriggerThreshold    0.000001
+//BBScint.EnergyResolution    ideal
+//BBScint.FailureRate         0.0
+
+//Modeling 2'x2' Detector 3' from East Wall, Centered on Source
+//Detector in array of 576 separate 1"x1" detectors
+
+Volume  1x1Det
+1x1Det.Material Densimet180
+1x1Det.Shape    BRIK  0.1 1.27 1.27
+1x1Det.Color    7
+
+Constant NLayers    24
+Constant YMax       -306.07
+Constant YDistance  2.54
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_A%Y
+  Det_A%Y.Position  502.92  $Y  -29.21
+  Det_A%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_B%Y
+  Det_B%Y.Position  502.92  $Y  -26.67
+  Det_B%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_C%Y
+  Det_C%Y.Position  502.92  $Y  -24.13
+  Det_C%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_D%Y
+  Det_D%Y.Position  502.92  $Y  -21.59
+  Det_D%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_E%Y
+  Det_E%Y.Position  502.92  $Y  -19.05
+  Det_E%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_F%Y
+  Det_F%Y.Position  502.92  $Y  -16.51
+  Det_F%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_G%Y
+  Det_G%Y.Position  502.92  $Y  -13.97
+  Det_G%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_H%Y
+  Det_H%Y.Position  502.92  $Y  -11.43
+  Det_H%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_I%Y
+  Det_I%Y.Position  502.92  $Y  -8.89
+  Det_I%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_J%Y
+  Det_J%Y.Position  502.92  $Y  -6.35
+  Det_J%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_K%Y
+  Det_K%Y.Position  502.92  $Y  -3.81
+  Det_K%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_L%Y
+  Det_L%Y.Position  502.92  $Y  -1.27
+  Det_L%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_M%Y
+  Det_M%Y.Position  502.92  $Y  1.27
+  Det_M%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_N%Y
+  Det_N%Y.Position  502.92  $Y  3.81
+  Det_N%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_O%Y
+  Det_O%Y.Position  502.92  $Y  6.35
+  Det_O%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_P%Y
+  Det_P%Y.Position  502.92  $Y  8.89
+  Det_P%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_Q%Y
+  Det_Q%Y.Position  502.92  $Y  11.43
+  Det_Q%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_R%Y
+  Det_R%Y.Position  502.92  $Y  13.97
+  Det_R%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_S%Y
+  Det_S%Y.Position  502.92  $Y  16.51
+  Det_S%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_T%Y
+  Det_T%Y.Position  502.92  $Y  19.05
+  Det_T%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_U%Y
+  Det_U%Y.Position  502.92  $Y  21.59
+  Det_U%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_V%Y
+  Det_V%Y.Position  502.92  $Y  24.13
+  Det_V%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_W%Y
+  Det_W%Y.Position  502.92  $Y  26.67
+  Det_W%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_X%Y
+  Det_X%Y.Position  502.92  $Y  29.21
+  Det_X%Y.Mother  WorldVolume
+Done
+
+Scintillator            Det
+Det.SensitiveVolume     1x1Det
+Det.DetectorVolume      1x1Det
+Det.NoiseThreshold      0.000001
+Det.TriggerThreshold    0.000001
+Det.EnergyResolution    ideal
+Det.FailureRate         0.0
+
+Trigger               TN01
+TN01.Veto             false
+TN01.TriggerByChannel true
+TN01.Detector         Det 1
+
+//modeling a fake source
+//The source will be placed on the ground in the southeaster corner of the BLDG 4" from each wall
+//This corresponds to 11'  -11'  0'
+//source.Position 335.28  -335.28  0.0

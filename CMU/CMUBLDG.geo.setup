@@ -1,0 +1,1189 @@
+// Gamma attenuation
+
+Name CMUBuilding
+Version 1.0
+
+SurroundingSphere 1000. 0.0 0.0 0.0 1000.
+Include $(MEGALIB)/resource/examples/geomega/materials/Materials.geo
+// Universe volume
+Volume WorldVolume
+WorldVolume.Material Air
+WorldVolume.Shape BRIK 577 577 577 //Cube inside sphere side length 1154 cm - 37.8 ft
+WorldVolume.Visibility 0
+WorldVolume.Color 1
+WorldVolume.Mother 0
+
+//Asphalt Slab
+//Building in the +x direction
+//Center of Top of Slab is 0 0 0
+//20 ft long in x
+//20 ft long in y
+//1 ft deep in z
+Volume Slab
+Slab.Material Asphalt
+Slab.Shape BRIK 304.8 304.8 15.24
+Slab.Position 0.00 0.00 -15.24
+Slab.Visibility 1
+Slab.Color 12
+Slab.Mother WorldVolume
+
+//Volume of Horizontal CMU
+//Standard US CMUs are 16"x8"x8"
+Volume CMU
+CMU.Material Concrete
+CMU.Shape BRIK  20.32 10.16 10.16
+
+//Cuts in CMU
+//CMUs have two cuts that are 6.5"x5.5"x8"
+//There is 1" between cuts
+Volume Cut
+Cut.Material Air
+Cut.Shape BRIK  8.225 6.35 10.16
+Cut.Visibility 1
+Cut.Color 4
+
+//Volume of Vertical CMU
+//Standard US CMUs are 16"x8"x8"
+Volume VCMU
+VCMU.Material Concrete
+VCMU.Shape BRIK  10.16 20.32 10.16
+
+//Cuts in VCMU
+//CMUs have two cuts that are 6.5"x5.5"x8"
+//There is 1" between cuts
+Volume VCut
+VCut.Material Air
+VCut.Shape BRIK   6.35 8.225 10.16
+VCut.Visibility 1
+VCut.Color 4
+
+//South Wall
+Constant WallLength 7
+Constant XMaxSO  111.76 //For odd rows
+Constant XMaxSE  132.08 //For even rows
+Constant XDistance  40.64
+
+For I WallLength XMaxSO {-XDistance}
+  CMU.Copy CMU_S1%I
+  CMU_S1%I.Position  $I  -142.24  10.16
+  CMU_S1%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  Cut.Copy Cut_S1A%I
+  Cut_S1A%I.Position  $I  -142.24  10.16
+  Cut_S1A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  Cut.Copy Cut_S1B%I
+  Cut_S1B%I.Position  $I  -142.24  10.16
+  Cut_S1B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  CMU.Copy CMU_S2%I
+  CMU_S2%I.Position  $I  -142.24  30.48
+  CMU_S2%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  Cut.Copy Cut_S2A%I
+  Cut_S2A%I.Position  $I  -142.24  30.48
+  Cut_S2A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  Cut.Copy Cut_S2B%I
+  Cut_S2B%I.Position  $I  -142.24  30.48
+  Cut_S2B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  CMU.Copy CMU_S3%I
+  CMU_S3%I.Position  $I  -142.24  50.8
+  CMU_S3%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  Cut.Copy Cut_S3A%I
+  Cut_S3A%I.Position  $I  -142.24  50.8
+  Cut_S3A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  Cut.Copy Cut_S3B%I
+  Cut_S3B%I.Position  $I  -142.24  50.8
+  Cut_S3B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  CMU.Copy CMU_S4%I
+  CMU_S4%I.Position  $I  -142.24  71.12
+  CMU_S4%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  Cut.Copy Cut_S4A%I
+  Cut_S4A%I.Position  $I  -142.24  71.12
+  Cut_S4A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  Cut.Copy Cut_S4B%I
+  Cut_S4B%I.Position  $I  -142.24  71.12
+  Cut_S4B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  CMU.Copy CMU_S5%I
+  CMU_S5%I.Position  $I  -142.24  91.44
+  CMU_S5%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  Cut.Copy Cut_S5A%I
+  Cut_S5A%I.Position  $I  -142.24  91.44
+  Cut_S5A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  Cut.Copy Cut_S5B%I
+  Cut_S5B%I.Position  $I  -142.24  91.44
+  Cut_S5B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  CMU.Copy CMU_S6%I
+  CMU_S6%I.Position  $I  -142.24  111.76
+  CMU_S6%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  Cut.Copy Cut_S6A%I
+  Cut_S6A%I.Position  $I  -142.24  111.76
+  Cut_S6A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  Cut.Copy Cut_S6B%I
+  Cut_S6B%I.Position  $I  -142.24  111.76
+  Cut_S6B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  CMU.Copy CMU_S7%I
+  CMU_S7%I.Position  $I  -142.24  132.08
+  CMU_S7%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  Cut.Copy Cut_S7A%I
+  Cut_S7A%I.Position  $I  -142.24  132.08
+  Cut_S7A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  Cut.Copy Cut_S7B%I
+  Cut_S7B%I.Position  $I  -142.24  132.08
+  Cut_S7B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  CMU.Copy CMU_S8%I
+  CMU_S8%I.Position  $I  -142.24  152.4
+  CMU_S8%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  Cut.Copy Cut_S8A%I
+  Cut_S8A%I.Position  $I  -142.24  152.4
+  Cut_S8A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  Cut.Copy Cut_S8B%I
+  Cut_S8B%I.Position  $I  -142.24  152.4
+  Cut_S8B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  CMU.Copy CMU_S9%I
+  CMU_S9%I.Position  $I  -142.24  172.72
+  CMU_S9%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  Cut.Copy Cut_S9A%I
+  Cut_S9A%I.Position  $I  -142.24  172.72
+  Cut_S9A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  Cut.Copy Cut_S9B%I
+  Cut_S9B%I.Position  $I  -142.24  172.72
+  Cut_S9B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  CMU.Copy CMU_S10%I
+  CMU_S10%I.Position  $I  -142.24  193.04
+  CMU_S10%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  Cut.Copy Cut_S10A%I
+  Cut_S10A%I.Position  $I  -142.24  193.04
+  Cut_S10A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  Cut.Copy Cut_S10B%I
+  Cut_S10B%I.Position  $I  -142.24  193.04
+  Cut_S10B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  CMU.Copy CMU_S11%I
+  CMU_S11%I.Position  $I  -142.24  213.36
+  CMU_S11%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  Cut.Copy Cut_S11A%I
+  Cut_S11A%I.Position  $I  -142.24  213.36
+  Cut_S11A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  Cut.Copy Cut_S11B%I
+  Cut_S11B%I.Position  $I  -142.24  213.36
+  Cut_S11B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  CMU.Copy CMU_S12%I
+  CMU_S12%I.Position  $I  -142.24  233.68
+  CMU_S12%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  Cut.Copy Cut_S12A%I
+  Cut_S12A%I.Position  $I  -142.24  233.68
+  Cut_S12A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  Cut.Copy Cut_S12B%I
+  Cut_S12B%I.Position  $I  -142.24  233.68
+  Cut_S12B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  CMU.Copy CMU_S13%I
+  CMU_S13%I.Position  $I  -142.24  254
+  CMU_S13%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  Cut.Copy Cut_S13A%I
+  Cut_S13A%I.Position  $I  -142.24  254
+  Cut_S13A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  Cut.Copy Cut_S13B%I
+  Cut_S13B%I.Position  $I  -142.24  254
+  Cut_S13B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  CMU.Copy CMU_S14%I
+  CMU_S14%I.Position  $I  -142.24  274.32
+  CMU_S14%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  Cut.Copy Cut_S14A%I
+  Cut_S14A%I.Position  $I  -142.24  274.32
+  Cut_S14A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  Cut.Copy Cut_S14B%I
+  Cut_S14B%I.Position  $I  -142.24  274.32
+  Cut_S14B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  CMU.Copy CMU_S15%I
+  CMU_S15%I.Position  $I  -142.24  294.64
+  CMU_S15%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  Cut.Copy Cut_S15A%I
+  Cut_S15A%I.Position  $I  -142.24  294.64
+  Cut_S15A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  Cut.Copy Cut_S15B%I
+  Cut_S15B%I.Position  $I  -142.24  294.64
+  Cut_S15B%I.Mother WorldVolume
+Done
+
+//North Wall
+Constant XMaxNE  111.76 //For even rows
+Constant XMaxNO  132.08 //For odd rows
+Constant XDistance  40.64
+
+For I WallLength XMaxNO {-XDistance}
+  CMU.Copy CMU_N1%I
+  CMU_N1%I.Position  $I  142.24  10.16
+  CMU_N1%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  Cut.Copy Cut_N1A%I
+  Cut_N1A%I.Position  $I  142.24  10.16
+  Cut_N1A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  Cut.Copy Cut_N1B%I
+  Cut_N1B%I.Position  $I  142.24  10.16
+  Cut_N1B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  CMU.Copy CMU_N2%I
+  CMU_N2%I.Position  $I  142.24  30.48
+  CMU_N2%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  Cut.Copy Cut_N2A%I
+  Cut_N2A%I.Position  $I  142.24  30.48
+  Cut_N2A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  Cut.Copy Cut_N2B%I
+  Cut_N2B%I.Position  $I  142.24  30.48
+  Cut_N2B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  CMU.Copy CMU_N3%I
+  CMU_N3%I.Position  $I  142.24  50.8
+  CMU_N3%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  Cut.Copy Cut_N3A%I
+  Cut_N3A%I.Position  $I  142.24  50.8
+  Cut_N3A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  Cut.Copy Cut_N3B%I
+  Cut_N3B%I.Position  $I  142.24  50.8
+  Cut_N3B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  CMU.Copy CMU_N4%I
+  CMU_N4%I.Position  $I  142.24  71.12
+  CMU_N4%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  Cut.Copy Cut_N4A%I
+  Cut_N4A%I.Position  $I  142.24  71.12
+  Cut_N4A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  Cut.Copy Cut_N4B%I
+  Cut_N4B%I.Position  $I  142.24  71.12
+  Cut_N4B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  CMU.Copy CMU_N5%I
+  CMU_N5%I.Position  $I  142.24  91.44
+  CMU_N5%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  Cut.Copy Cut_N5A%I
+  Cut_N5A%I.Position  $I  142.24  91.44
+  Cut_N5A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  Cut.Copy Cut_N5B%I
+  Cut_N5B%I.Position  $I  142.24  91.44
+  Cut_N5B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  CMU.Copy CMU_N6%I
+  CMU_N6%I.Position  $I  142.24  111.76
+  CMU_N6%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  Cut.Copy Cut_N6A%I
+  Cut_N6A%I.Position  $I  142.24  111.76
+  Cut_N6A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  Cut.Copy Cut_N6B%I
+  Cut_N6B%I.Position  $I  142.24  111.76
+  Cut_N6B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  CMU.Copy CMU_N7%I
+  CMU_N7%I.Position  $I  142.24  132.08
+  CMU_N7%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  Cut.Copy Cut_N7A%I
+  Cut_N7A%I.Position  $I  142.24  132.08
+  Cut_N7A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  Cut.Copy Cut_N7B%I
+  Cut_N7B%I.Position  $I  142.24  132.08
+  Cut_N7B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  CMU.Copy CMU_N8%I
+  CMU_N8%I.Position  $I  142.24  152.4
+  CMU_N8%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  Cut.Copy Cut_N8A%I
+  Cut_N8A%I.Position  $I  142.24  152.4
+  Cut_N8A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  Cut.Copy Cut_N8B%I
+  Cut_N8B%I.Position  $I  142.24  152.4
+  Cut_N8B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  CMU.Copy CMU_N9%I
+  CMU_N9%I.Position  $I  142.24  172.72
+  CMU_N9%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  Cut.Copy Cut_N9A%I
+  Cut_N9A%I.Position  $I  142.24  172.72
+  Cut_N9A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  Cut.Copy Cut_N9B%I
+  Cut_N9B%I.Position  $I  142.24  172.72
+  Cut_N9B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  CMU.Copy CMU_N10%I
+  CMU_N10%I.Position  $I  142.24  193.04
+  CMU_N10%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  Cut.Copy Cut_N10A%I
+  Cut_N10A%I.Position  $I  142.24  193.04
+  Cut_N10A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  Cut.Copy Cut_N10B%I
+  Cut_N10B%I.Position  $I  142.24  193.04
+  Cut_N10B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  CMU.Copy CMU_N11%I
+  CMU_N11%I.Position  $I  142.24  213.36
+  CMU_N11%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  Cut.Copy Cut_N11A%I
+  Cut_N11A%I.Position  $I  142.24  213.36
+  Cut_N11A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  Cut.Copy Cut_N11B%I
+  Cut_N11B%I.Position  $I  142.24  213.36
+  Cut_N11B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  CMU.Copy CMU_N12%I
+  CMU_N12%I.Position  $I  142.24  233.68
+  CMU_N12%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  Cut.Copy Cut_N12A%I
+  Cut_N12A%I.Position  $I  142.24  233.68
+  Cut_N12A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  Cut.Copy Cut_N12B%I
+  Cut_N12B%I.Position  $I  142.24  233.68
+  Cut_N12B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  CMU.Copy CMU_N13%I
+  CMU_N13%I.Position  $I  142.24  254
+  CMU_N13%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  Cut.Copy Cut_N13A%I
+  Cut_N13A%I.Position  $I  142.24  254
+  Cut_N13A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  Cut.Copy Cut_N13B%I
+  Cut_N13B%I.Position  $I  142.24  254
+  Cut_N13B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  CMU.Copy CMU_N14%I
+  CMU_N14%I.Position  $I  142.24  274.32
+  CMU_N14%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  Cut.Copy Cut_N14A%I
+  Cut_N14A%I.Position  $I  142.24  274.32
+  Cut_N14A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  Cut.Copy Cut_N14B%I
+  Cut_N14B%I.Position  $I  142.24  274.32
+  Cut_N14B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  CMU.Copy CMU_N15%I
+  CMU_N15%I.Position  $I  142.24  294.64
+  CMU_N15%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  Cut.Copy Cut_N15A%I
+  Cut_N15A%I.Position  $I  142.24  294.64
+  Cut_N15A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  Cut.Copy Cut_N15B%I
+  Cut_N15B%I.Position  $I  142.24  294.64
+  Cut_N15B%I.Mother WorldVolume
+Done
+
+//East Wall
+Constant WallLength 7
+Constant XMaxSO  111.76 //For odd rows
+Constant XMaxSE  132.08 //For even rows
+Constant XDistance  40.64
+
+For I WallLength XMaxSO {-XDistance}
+  VCMU.Copy VCMU_S1%I
+  VCMU_S1%I.Position  142.24  $I  10.16
+  VCMU_S1%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  VCut.Copy VCut_S1A%I
+  VCut_S1A%I.Position  142.24  $I  10.16
+  VCut_S1A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  VCut.Copy VCut_S1B%I
+  VCut_S1B%I.Position  142.24  $I  10.16
+  VCut_S1B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  VCMU.Copy VCMU_S2%I
+  VCMU_S2%I.Position  142.24  $I  30.48
+  VCMU_S2%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  VCut.Copy VCut_S2A%I
+  VCut_S2A%I.Position  142.24  $I  30.48
+  VCut_S2A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  VCut.Copy VCut_S2B%I
+  VCut_S2B%I.Position  142.24  $I  30.48
+  VCut_S2B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  VCMU.Copy VCMU_S3%I
+  VCMU_S3%I.Position  142.24  $I  50.8
+  VCMU_S3%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  VCut.Copy VCut_S3A%I
+  VCut_S3A%I.Position  142.24  $I  50.8
+  VCut_S3A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  VCut.Copy VCut_S3B%I
+  VCut_S3B%I.Position  142.24  $I  50.8
+  VCut_S3B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  VCMU.Copy VCMU_S4%I
+  VCMU_S4%I.Position  142.24  $I  71.12
+  VCMU_S4%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  VCut.Copy VCut_S4A%I
+  VCut_S4A%I.Position  142.24  $I  71.12
+  VCut_S4A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  VCut.Copy VCut_S4B%I
+  VCut_S4B%I.Position  142.24  $I  71.12
+  VCut_S4B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  VCMU.Copy VCMU_S5%I
+  VCMU_S5%I.Position  142.24  $I  91.44
+  VCMU_S5%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  VCut.Copy VCut_S5A%I
+  VCut_S5A%I.Position  142.24  $I  91.44
+  VCut_S5A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  VCut.Copy VCut_S5B%I
+  VCut_S5B%I.Position  142.24  $I  91.44
+  VCut_S5B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  VCMU.Copy VCMU_S6%I
+  VCMU_S6%I.Position  142.24  $I  111.76
+  VCMU_S6%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  VCut.Copy VCut_S6A%I
+  VCut_S6A%I.Position  142.24  $I  111.76
+  VCut_S6A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  VCut.Copy VCut_S6B%I
+  VCut_S6B%I.Position  142.24  $I  111.76
+  VCut_S6B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  VCMU.Copy VCMU_S7%I
+  VCMU_S7%I.Position  142.24  $I  132.08
+  VCMU_S7%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  VCut.Copy VCut_S7A%I
+  VCut_S7A%I.Position  142.24  $I  132.08
+  VCut_S7A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  VCut.Copy VCut_S7B%I
+  VCut_S7B%I.Position  142.24  $I  132.08
+  VCut_S7B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  VCMU.Copy VCMU_S8%I
+  VCMU_S8%I.Position  142.24  $I  152.4
+  VCMU_S8%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  VCut.Copy VCut_S8A%I
+  VCut_S8A%I.Position  142.24  $I  152.4
+  VCut_S8A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  VCut.Copy VCut_S8B%I
+  VCut_S8B%I.Position  142.24  $I  152.4
+  VCut_S8B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  VCMU.Copy VCMU_S9%I
+  VCMU_S9%I.Position  142.24  $I  172.72
+  VCMU_S9%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  VCut.Copy VCut_S9A%I
+  VCut_S9A%I.Position  142.24  $I  172.72
+  VCut_S9A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  VCut.Copy VCut_S9B%I
+  VCut_S9B%I.Position  142.24  $I  172.72
+  VCut_S9B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  VCMU.Copy VCMU_S10%I
+  VCMU_S10%I.Position  142.24  $I  193.04
+  VCMU_S10%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  VCut.Copy VCut_S10A%I
+  VCut_S10A%I.Position  142.24  $I  193.04
+  VCut_S10A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  VCut.Copy VCut_S10B%I
+  VCut_S10B%I.Position  142.24  $I  193.04
+  VCut_S10B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  VCMU.Copy VCMU_S11%I
+  VCMU_S11%I.Position  142.24  $I  213.36
+  VCMU_S11%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  VCut.Copy VCut_S11A%I
+  VCut_S11A%I.Position  142.24  $I  213.36
+  VCut_S11A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  VCut.Copy VCut_S11B%I
+  VCut_S11B%I.Position  142.24  $I  213.36
+  VCut_S11B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  VCMU.Copy VCMU_S12%I
+  VCMU_S12%I.Position  142.24  $I  233.68
+  VCMU_S12%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  VCut.Copy VCut_S12A%I
+  VCut_S12A%I.Position  142.24  $I  233.68
+  VCut_S12A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  VCut.Copy VCut_S12B%I
+  VCut_S12B%I.Position  142.24  $I  233.68
+  VCut_S12B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  VCMU.Copy VCMU_S13%I
+  VCMU_S13%I.Position  142.24  $I  254
+  VCMU_S13%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  VCut.Copy VCut_S13A%I
+  VCut_S13A%I.Position  142.24  $I  254
+  VCut_S13A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  VCut.Copy VCut_S13B%I
+  VCut_S13B%I.Position  142.24  $I  254
+  VCut_S13B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSE {-XDistance}
+  VCMU.Copy VCMU_S14%I
+  VCMU_S14%I.Position  142.24  $I  274.32
+  VCMU_S14%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE + 8.89} {-XDistance}
+  VCut.Copy VCut_S14A%I
+  VCut_S14A%I.Position  142.24  $I  274.32
+  VCut_S14A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSE - 8.89} {-XDistance}
+  VCut.Copy VCut_S14B%I
+  VCut_S14B%I.Position  142.24  $I  274.32
+  VCut_S14B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxSO {-XDistance}
+  VCMU.Copy VCMU_S15%I
+  VCMU_S15%I.Position  142.24  $I  294.64
+  VCMU_S15%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO + 8.89} {-XDistance}
+  VCut.Copy VCut_S15A%I
+  VCut_S15A%I.Position  142.24  $I  294.64
+  VCut_S15A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxSO - 8.89} {-XDistance}
+  VCut.Copy VCut_S15B%I
+  VCut_S15B%I.Position  142.24  $I  294.64
+  VCut_S15B%I.Mother WorldVolume
+Done
+
+//West Wall
+Constant XMaxNE  111.76 //For even rows
+Constant XMaxNO  132.08 //For odd rows
+Constant XDistance  40.64
+
+For I WallLength XMaxNO {-XDistance}
+  VCMU.Copy VCMU_N1%I
+  VCMU_N1%I.Position  -142.24  $I  10.16
+  VCMU_N1%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  VCut.Copy VCut_N1A%I
+  VCut_N1A%I.Position  -142.24  $I  10.16
+  VCut_N1A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  VCut.Copy VCut_N1B%I
+  VCut_N1B%I.Position  -142.24  $I  10.16
+  VCut_N1B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  VCMU.Copy VCMU_N2%I
+  VCMU_N2%I.Position  -142.24  $I  30.48
+  VCMU_N2%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  VCut.Copy VCut_N2A%I
+  VCut_N2A%I.Position  -142.24  $I  30.48
+  VCut_N2A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  VCut.Copy VCut_N2B%I
+  VCut_N2B%I.Position  -142.24  $I  30.48
+  VCut_N2B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  VCMU.Copy VCMU_N3%I
+  VCMU_N3%I.Position  -142.24  $I  50.8
+  VCMU_N3%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  VCut.Copy VCut_N3A%I
+  VCut_N3A%I.Position  -142.24  $I  50.8
+  VCut_N3A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  VCut.Copy VCut_N3B%I
+  VCut_N3B%I.Position  -142.24  $I  50.8
+  VCut_N3B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  VCMU.Copy VCMU_N4%I
+  VCMU_N4%I.Position  -142.24  $I  71.12
+  VCMU_N4%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  VCut.Copy VCut_N4A%I
+  VCut_N4A%I.Position  -142.24  $I  71.12
+  VCut_N4A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  VCut.Copy VCut_N4B%I
+  VCut_N4B%I.Position  -142.24  $I  71.12
+  VCut_N4B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  VCMU.Copy VCMU_N5%I
+  VCMU_N5%I.Position  -142.24  $I  91.44
+  VCMU_N5%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  VCut.Copy VCut_N5A%I
+  VCut_N5A%I.Position  -142.24  $I  91.44
+  VCut_N5A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  VCut.Copy VCut_N5B%I
+  VCut_N5B%I.Position  -142.24  $I  91.44
+  VCut_N5B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  VCMU.Copy VCMU_N6%I
+  VCMU_N6%I.Position  -142.24  $I  111.76
+  VCMU_N6%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  VCut.Copy VCut_N6A%I
+  VCut_N6A%I.Position  -142.24  $I  111.76
+  VCut_N6A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  VCut.Copy VCut_N6B%I
+  VCut_N6B%I.Position  -142.24  $I  111.76
+  VCut_N6B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  VCMU.Copy VCMU_N7%I
+  VCMU_N7%I.Position  -142.24  $I  132.08
+  VCMU_N7%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  VCut.Copy VCut_N7A%I
+  VCut_N7A%I.Position  -142.24  $I  132.08
+  VCut_N7A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  VCut.Copy VCut_N7B%I
+  VCut_N7B%I.Position  -142.24  $I  132.08
+  VCut_N7B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  VCMU.Copy VCMU_N8%I
+  VCMU_N8%I.Position  -142.24  $I  152.4
+  VCMU_N8%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  VCut.Copy VCut_N8A%I
+  VCut_N8A%I.Position  -142.24  $I  152.4
+  VCut_N8A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  VCut.Copy VCut_N8B%I
+  VCut_N8B%I.Position  -142.24  $I  152.4
+  VCut_N8B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  VCMU.Copy VCMU_N9%I
+  VCMU_N9%I.Position  -142.24  $I  172.72
+  VCMU_N9%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  VCut.Copy VCut_N9A%I
+  VCut_N9A%I.Position  -142.24  $I  172.72
+  VCut_N9A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  VCut.Copy VCut_N9B%I
+  VCut_N9B%I.Position  -142.24  $I  172.72
+  VCut_N9B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  VCMU.Copy VCMU_N10%I
+  VCMU_N10%I.Position  -142.24  $I  193.04
+  VCMU_N10%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  VCut.Copy VCut_N10A%I
+  VCut_N10A%I.Position  -142.24  $I  193.04
+  VCut_N10A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  VCut.Copy VCut_N10B%I
+  VCut_N10B%I.Position  -142.24  $I  193.04
+  VCut_N10B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  VCMU.Copy VCMU_N11%I
+  VCMU_N11%I.Position  -142.24  $I  213.36
+  VCMU_N11%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  VCut.Copy VCut_N11A%I
+  VCut_N11A%I.Position  -142.24  $I  213.36
+  VCut_N11A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  VCut.Copy VCut_N11B%I
+  VCut_N11B%I.Position  -142.24  $I  213.36
+  VCut_N11B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  VCMU.Copy VCMU_N12%I
+  VCMU_N12%I.Position  -142.24  $I  233.68
+  VCMU_N12%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  VCut.Copy VCut_N12A%I
+  VCut_N12A%I.Position  -142.24  $I  233.68
+  VCut_N12A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  VCut.Copy VCut_N12B%I
+  VCut_N12B%I.Position  -142.24  $I  233.68
+  VCut_N12B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  VCMU.Copy VCMU_N13%I
+  VCMU_N13%I.Position  -142.24  $I  254
+  VCMU_N13%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  VCut.Copy VCut_N13A%I
+  VCut_N13A%I.Position  -142.24  $I  254
+  VCut_N13A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  VCut.Copy VCut_N13B%I
+  VCut_N13B%I.Position  -142.24  $I  254
+  VCut_N13B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNE {-XDistance}
+  VCMU.Copy VCMU_N14%I
+  VCMU_N14%I.Position  -142.24  $I  274.32
+  VCMU_N14%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE + 8.89} {-XDistance}
+  VCut.Copy VCut_N14A%I
+  VCut_N14A%I.Position  -142.24  $I  274.32
+  VCut_N14A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNE - 8.89} {-XDistance}
+  VCut.Copy VCut_N14B%I
+  VCut_N14B%I.Position  -142.24  $I  274.32
+  VCut_N14B%I.Mother WorldVolume
+Done
+
+For I WallLength XMaxNO {-XDistance}
+  VCMU.Copy VCMU_N15%I
+  VCMU_N15%I.Position  -142.24  $I  294.64
+  VCMU_N15%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO + 8.89} {-XDistance}
+  VCut.Copy VCut_N15A%I
+  VCut_N15A%I.Position  -142.24  $I  294.64
+  VCut_N15A%I.Mother WorldVolume
+Done
+
+For I WallLength {XMaxNO - 8.89} {-XDistance}
+  VCut.Copy VCut_N15B%I
+  VCut_N15B%I.Position  -142.24  $I  294.64
+  VCut_N15B%I.Mother WorldVolume
+Done
+
+//Modeling the BlackBodyAbsorber
+//5'x5' Absorber 3' from East Wall, Centered on Source
+Volume BBdetector
+BBdetector.Material NaI
+BBdetector.Shape BRIK 0.1 76.2 76.2
+BBdetector.Position 243.84 -121.92 76.2
+BBdetector.Visibility 1
+BBdetector.Color 7
+BBdetector.Mother WorldVolume
+
+//BlackBodyAbsorber Characteristics
+Scintillator                  BBScint
+BBScint.DetectorVolume      BBdetector
+BBScint.SensitiveVolume     BBdetector
+BBScint.NoiseThreshold          0.000001
+BBScint.TriggerThreshold        0.000001
+BBScint.EnergyResolution  ideal
+BBScint.FailureRate 0.0
+
+Trigger TN01
+TN01.Veto false
+TN01.TriggerByChannel true
+TN01.Detector BBScint 1
+
+//modeling a fake source
+//The source will be placed on the ground in the southeaster corner of the BLDG 4" from each wall
+//This corresponds to 4'  -4'  0'
+//source.Position 121.92  -121.92  0.0

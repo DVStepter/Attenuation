@@ -1,0 +1,42 @@
+# Global parameters:
+Version               1
+Geometry              CMUBLDG.geo.setup
+CheckForOverlaps     1000       0.001
+
+# Physics list
+PhysicsListEM                    LivermorePol
+DetectorTimeConstant               0.000005
+
+BlackAbsorber  BBDetector
+
+# Output formats
+StoreCalibrated                      true
+StoreSimulationInfo                  true
+StoreSimulationInfoIonization        false
+StoreOnlyTriggeredEvents             false
+DiscretizeHits                       true
+
+# Run & source parameters
+Run Spec1
+Spec1.FileName                Spec1
+Spec1.Triggers                10000
+
+Spec1.Source Co60_1173
+Co60_1173.ParticleType      1
+Co60_1173.Beam              PointSource 274.32  -274.32  0.0
+Co60_1173.Spectrum          Mono 1173.2
+Co60_1173.Flux              389200
+
+//Spec1.Source Co60_1332
+//Co60_1332.ParticleType      1
+//Co60_1332.Beam              PointSource  274.32  -274.32  0.0
+//Co60_1332.Spectrum          Mono 1332.51
+//Co60_1332.Flux              389200
+
+//Spec1.Source Cs137_662
+//Cs137_662.ParticleType      1
+//Cs137_662.Beam              PointSource  274.32  -274.32  0.0
+//Cs137_662.Spectrum          Mono 661.6
+//Cs137_662.Flux              411810
+
+#flux is in particles/s

@@ -1,0 +1,197 @@
+// Gamma attenuation - Ground Reflection Model
+
+Name BLDG100
+Version 1.0
+
+SurroundingSphere 1000. 0.0 0.0 0.0 1000.
+Include $(MEGALIB)/resource/examples/geomega/materials/Materials.geo
+// Universe volume
+Volume WorldVolume
+WorldVolume.Material Vacuum
+WorldVolume.Shape BRIK 577 577 577 //Cube inside sphere side length 1154 cm - 37.8 ft
+WorldVolume.Visibility 0
+WorldVolume.Color 1
+WorldVolume.Mother 0
+
+//Volume of ground below BLDG 100
+//36' x 36' x 2'
+Volume  Ground
+Ground.Material   Earth
+Ground.Shape  BRIK  548.64  548.64  30.48
+Ground.Color  41
+Ground.Position 0 0 -167.64
+Ground.Mother WorldVolume
+
+//Modeling 2'x2' Detector 3' from East Wall, Centered on Source
+//Detector in array of 576 separate 1"x1" detectors
+
+Volume  1x1Det
+1x1Det.Material Densimet180
+1x1Det.Shape    BRIK  0.1 1.27 1.27
+1x1Det.Color    7
+
+Constant NLayers    24
+Constant YMax       -306.07
+Constant YDistance  2.54
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_A%Y
+  Det_A%Y.Position  502.92  $Y  -29.21
+  Det_A%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_B%Y
+  Det_B%Y.Position  502.92  $Y  -26.67
+  Det_B%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_C%Y
+  Det_C%Y.Position  502.92  $Y  -24.13
+  Det_C%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_D%Y
+  Det_D%Y.Position  502.92  $Y  -21.59
+  Det_D%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_E%Y
+  Det_E%Y.Position  502.92  $Y  -19.05
+  Det_E%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_F%Y
+  Det_F%Y.Position  502.92  $Y  -16.51
+  Det_F%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_G%Y
+  Det_G%Y.Position  502.92  $Y  -13.97
+  Det_G%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_H%Y
+  Det_H%Y.Position  502.92  $Y  -11.43
+  Det_H%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_I%Y
+  Det_I%Y.Position  502.92  $Y  -8.89
+  Det_I%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_J%Y
+  Det_J%Y.Position  502.92  $Y  -6.35
+  Det_J%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_K%Y
+  Det_K%Y.Position  502.92  $Y  -3.81
+  Det_K%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_L%Y
+  Det_L%Y.Position  502.92  $Y  -1.27
+  Det_L%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_M%Y
+  Det_M%Y.Position  502.92  $Y  1.27
+  Det_M%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_N%Y
+  Det_N%Y.Position  502.92  $Y  3.81
+  Det_N%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_O%Y
+  Det_O%Y.Position  502.92  $Y  6.35
+  Det_O%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_P%Y
+  Det_P%Y.Position  502.92  $Y  8.89
+  Det_P%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_Q%Y
+  Det_Q%Y.Position  502.92  $Y  11.43
+  Det_Q%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_R%Y
+  Det_R%Y.Position  502.92  $Y  13.97
+  Det_R%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_S%Y
+  Det_S%Y.Position  502.92  $Y  16.51
+  Det_S%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_T%Y
+  Det_T%Y.Position  502.92  $Y  19.05
+  Det_T%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_U%Y
+  Det_U%Y.Position  502.92  $Y  21.59
+  Det_U%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_V%Y
+  Det_V%Y.Position  502.92  $Y  24.13
+  Det_V%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_W%Y
+  Det_W%Y.Position  502.92  $Y  26.67
+  Det_W%Y.Mother  WorldVolume
+Done
+
+For Y NLayers YMax {-YDistance}
+  1x1Det.Copy   Det_X%Y
+  Det_X%Y.Position  502.92  $Y  29.21
+  Det_X%Y.Mother  WorldVolume
+Done
+
+Scintillator  Det
+Det.SensitiveVolume 1x1Det
+Det.DetectorVolume  1x1Det
+Det.NoiseThreshold      0.000001
+Det.TriggerThreshold    0.000001
+Det.EnergyResolution    ideal
+Dett.FailureRate         0.0
+
+Trigger TN01
+TN01.Veto false
+TN01.TriggerByDetector true
+TN01.Detector Det 1
+
+//modeling a fake source
+//The source will be placed on the ground in the southeastern corner of the BLDG 4" from each wall
+//This corresponds to 11'  -11'  0'
+//source.Position 335.28  -335.28  0.0

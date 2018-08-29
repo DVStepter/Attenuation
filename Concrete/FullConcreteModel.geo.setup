@@ -1,0 +1,103 @@
+// Gamma attenuation
+
+Name FullConcrete
+Version 1.0
+
+SurroundingSphere 1500. 0.0 0.0 0.0 1500.
+Include $(MEGALIB)/resource/examples/geomega/materials/Materials.geo
+// Universe volume
+Volume WorldVolume
+WorldVolume.Material    Vacuum
+WorldVolume.Shape       BRIK 1000 1000 1000 //Cube inside sphere side length 1154 cm - 37.8 ft
+WorldVolume.Visibility  0
+WorldVolume.Color       1
+WorldVolume.Mother      0
+
+//Asphalt Slab
+//Building in the +x direction
+//Center of Top of Slab is 0 0 0
+//20 m long in x
+//20 m long in y
+//0.5 m deep in z
+Volume                Slab
+Slab.Material         Asphalt
+Slab.Shape            BRIK 1000 1000 25
+Slab.Position         0.00 0.00 -12.5
+Slab.Visibility       1
+Slab.Color            12
+Slab.Mother           WorldVolume
+
+//Northern Concrete wall
+//5 m long in x
+//10 cm long in y
+//10 m tall in z
+Volume                NorthWall
+NorthWall.Material    Concrete
+NorthWall.Shape       BRIK  250.0 5.0 500
+NorthWall.Position    5 250 500
+NorthWall.Visibility  1
+NorthWall.Color       6
+NorthWall.Mother      WorldVolume
+
+//Southern Concrete wall
+//5 m long in x
+//10 cm long in y
+//10 m tall in z
+Volume                SouthWall
+SouthWall.Material    Concrete
+SouthWall.Shape       BRIK 250.0 5.0 500
+SouthWall.Position    -5 -250 500
+SouthWall.Visibility  1
+SouthWall.Color       6
+SouthWall.Mother      WorldVolume
+
+//Western Concrete wall
+//10 cm long in x
+//5 m long in y
+//10 m tall in z
+Volume                WestWall
+WestWall.Material     Concrete
+WestWall.Shape        BRIK  5 250 500
+WestWall.Position     -250  5 500
+WestWall.Visibility   1
+WestWall.Color        6
+WestWall.Mother       WorldVolume
+
+//Eastern Concrete wall
+//10 cm long in x
+//5 m long in y
+//10 m tall in z
+Volume EastWall
+EastWall.Material     Concrete
+EastWall.Shape        BRIK  5 250 500
+EastWall.Position     250 -5 500
+EastWall.Visibility   1
+EastWall.Color        6
+EastWall.Mother       WorldVolume
+
+//Modeling the BlackBodyAbsorber
+//10 m tall Cylindrical Absorber 7.5 m from Source, Height centered on Source
+Volume BBdetector
+BBdetector.Material NaI
+BBdetector.Shape TUBS 750 750.1 500.0 0.0 360.0
+BBdetector.Position 0.0 0.0 500.0
+BBdetector.Visibility 1
+BBdetector.Color 7
+BBdetector.Mother WorldVolume
+
+//BlackBodyAbsorber Characteristics
+Scintillator                BBScint
+BBScint.DetectorVolume      BBdetector
+BBScint.SensitiveVolume     BBdetector
+BBScint.NoiseThreshold      0.000001
+BBScint.TriggerThreshold    0.000001
+BBScint.EnergyResolution    ideal
+BBScint.FailureRate         0.0
+
+Trigger TN01
+TN01.Veto false
+TN01.TriggerByChannel true
+TN01.Detector BBScint 1
+
+//modeling a fake source
+//source.Position 0.0 0.0 250.0
