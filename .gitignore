@@ -1,6 +1,9 @@
 # Python cruft
 *.pyc
 
+# IPython Notebook
+.ipynb_checkpoints
+
 # Editor cruft
 *.swp
 *.*~
