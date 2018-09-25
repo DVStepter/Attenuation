@@ -23,6 +23,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy
 from itertools import product, combinations
 from collections import OrderedDict
+import pandas as pd
 
 
 
@@ -104,7 +105,7 @@ class Hits(object):
 		str = ""
 		hits = zip(self.detector,self.x,self.y,self.z,self.energy)
 		for hit in hits:
-			str += "HTsim {:d}; {:f}; {:f}; {:f}; {:f}\n".format(*hit)
+			str += "BLAK {:d}; {:f}; {:f}; {:f}; {:f}\n".format(*hit)
 		return str
 
 
@@ -326,17 +327,21 @@ def parse(filename, skipPhoto=True):
 				event.particleInformation[ID_childParticle]['time'] = [interactions.timeStart[-1]]
 
 		# Record the hit information
-		if 'HTsim' in line:
+		if 'BLAK' in line:
 
 			# Split the line
 			LineContents = line.split(';')
 
 			# Extract the hit information
-			hits.detector.append(int(LineContents[0].split(' ')[1]))
+			#hits.detector.append(int(LineContents[0].split(' ')[1]))
 			hits.x.append(float(LineContents[1]))
 			hits.y.append(float(LineContents[2]))
 			hits.z.append(float(LineContents[3]))
 			hits.energy.append(float(LineContents[4]))
+
+
+
+
 
 
 	# Close the input file
@@ -357,7 +362,7 @@ def plot(filename, showEvent=1, ax=None, hidePhoto=True, showInteractions=True, 
 	simulation = parse(filename, skipPhoto=True)
 
 	# Create a dictionary of symbols and colors for the various interaction and particle types
-	interactionMarkers = {'INIT':u'$\u2193$', 'PAIR':'^', 'COMP':'s', 'PHOT': 'D', 'BREM': 'o', 'RAYL':'8', 'IONI':'d', 'INEL':'<', 'CAPT':'.', 'DECA':'h', 'ESCP':'x', 'ENTR':'+', 'EXIT':'x', 'BLAK':'-', 'ANNI':'*'}
+	interactionMarkers = {'INIT':u'$\u2193$', 'PAIR':'^', 'COMP':'s', 'PHOT': 'D', 'BREM': 'o', 'RAYL':'8', 'IONI':'d', 'INEL':'<', 'CAPT':'.', 'DECA':'h','ESCP':'x', 'ENTR':'+', 'EXIT':'x', 'BLAK':'-', 'ANNI':'*'}
 	particleColors = {'0': 'gray', '1':'gray', '2':'red', '3':'blue', '4': 'lightgreen', '5': 'darkgreen'}
 	particleLabels = {'0': r'$\gamma$', '1':r'$\gamma$', '2':r'$e^{+}$', '3':r'$e^{-}$', '4': r'$p^{+}$', '5': r'$p^{-}$'}
 
@@ -396,6 +401,7 @@ def plot(filename, showEvent=1, ax=None, hidePhoto=True, showInteractions=True, 
 
 					# Plot the interaction
 					ax.scatter(x, y, z, marker=interactionMarkers[interactionType], s=size, c=color, label=interactionType)
+
 
 					# Label the interaction
 					ax.text(x, y, z, '  %s' % (ID), size=10, zorder=1)
