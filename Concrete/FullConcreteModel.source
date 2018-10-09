@@ -11,6 +11,7 @@ PhysicsListEM                    Livermore
 StoreSimulationInfo                  true
 StoreSimulationInfoIonization        false
 StoreOnlyTriggeredEvents             false
+StoreOneHitPerEvent                  true
 DiscretizeHits                       true
 
 BlackAbsorber BBdetector
@@ -18,7 +19,7 @@ BlackAbsorber BBdetector
 # Run & source parameters
 Run FullConcreteModel
 FullConcreteModel.FileName             FullConcreteModel
-FullConcreteModel.Events               25000
+FullConcreteModel.Events               2000000
 
 
 //FullConcreteModel.Source Co60_1173
@@ -36,5 +37,11 @@ Co60_1332.Flux              37000   //1 micro curie source
 //FullConcreteModel.Source Cs137_662
 //Cs137_662.ParticleType    1
 //Cs137_662.Beam            PointSource  0.0 0.0 250.0
-//Cs137_662.Spectrum        Mono 661.6
+//Cs137_662.Spectrum        Mono 661.657
 //Cs137_662.Flux            37000   //1 micro curie source
+
+//FullConcreteModel.Source Am241_59
+//Am241_59.ParticleType    1
+//Am241_59.Beam            PointSource  0.0 0.0 250.0
+//Am241_59.Spectrum        Mono 59.5409
+//Am241_59.Flux            37000   //1 micro curie source

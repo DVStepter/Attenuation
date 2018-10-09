@@ -22,7 +22,7 @@ WorldVolume.Mother      0
 Volume                Slab
 Slab.Material         Asphalt
 Slab.Shape            BRIK 1000 1000 25
-Slab.Position         0.00 0.00 -12.5
+Slab.Position         0.00 0.00 -25
 Slab.Visibility       1
 Slab.Color            12
 Slab.Mother           WorldVolume
