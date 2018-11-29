@@ -18,22 +18,22 @@ BlackAbsorber BBdetector
 # Run & source parameters
 Run AttenuatedConcreteModel
 AttenuatedConcreteModel.FileName             AttenuatedConcreteModel
-AttenuatedConcreteModel.Events               1000000
+AttenuatedConcreteModel.Events               3000000
 
 //AttenuatedConcreteModel.Source Co60_1173
 //Co60_1173.ParticleType    1
-//Co60_1173.Beam            PointSource 0.0 0.0 250.0
+//Co60_1173.Beam            PointSource 0.0 0.0 500.0
 //Co60_1173.Spectrum        Mono 1173.2
 //Co60_1173.Flux            37000   //1 micro curie source
 
 AttenuatedConcreteModel.Source Co60_1332
 Co60_1332.ParticleType      1
-Co60_1332.Beam              PointSource  0.0 0.0 250.0
+Co60_1332.Beam              PointSource  0.0 0.0 500.0
 Co60_1332.Spectrum          Mono 1332.492
 Co60_1332.Flux              37000   //1 micro curie source
 
 //AttenuatedConcreteModel.Source Cs137_662
 //Cs137_662.ParticleType    1
-//Cs137_662.Beam            PointSource  0.0 0.0 250.0
+//Cs137_662.Beam            PointSource  0.0 0.0 500.0
 //Cs137_662.Spectrum        Mono 661.6
 //Cs137_662.Flux            37000   //1 micro curie source

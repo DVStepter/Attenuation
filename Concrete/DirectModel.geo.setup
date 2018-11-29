@@ -39,4 +39,4 @@ TN01.TriggerByChannel true
 TN01.Detector BBScint 1
 
 //modeling a fake source
-//source.Position 0.0 0.0 250.0
+//source.Position 0.0 0.0 255.0

@@ -13,53 +13,16 @@ WorldVolume.Visibility  0
 WorldVolume.Color       1
 WorldVolume.Mother      0
 
-//Northern Concrete wall
-//5 m long in x
-//10 cm long in y
-//10 m tall in z
-Volume                NorthWall
-NorthWall.Material    Concrete
-NorthWall.Shape       BRIK  250.0 5.0 500
-NorthWall.Position    5 250 500
-NorthWall.Visibility  1
-NorthWall.Color       6
-NorthWall.Mother      WorldVolume
+//Circular Concrete wall to test gamma attenuation
+//10 m tall Cylindrical Wall 2.5 m from Source, 10 cm thick
+Volume                Wall
+Wall.Material Concrete
+Wall.Shape TUBS 250 260 500.0 0.0 360.0
+Wall.Position 0.0 0.0 500.0
+Wall.Visibility 1
+Wall.Color 4
+Wall.Mother WorldVolume
 
-//Southern Concrete wall
-//5 m long in x
-//10 cm long in y
-//10 m tall in z
-Volume                SouthWall
-SouthWall.Material    Concrete
-SouthWall.Shape       BRIK 250.0 5.0 500
-SouthWall.Position    -5 -250 500
-SouthWall.Visibility  1
-SouthWall.Color       6
-SouthWall.Mother      WorldVolume
-
-//Western Concrete wall
-//10 cm long in x
-//5 m long in y
-//10 m tall in z
-Volume                WestWall
-WestWall.Material     Concrete
-WestWall.Shape        BRIK  5 250 500
-WestWall.Position     -250  5 500
-WestWall.Visibility   1
-WestWall.Color        6
-WestWall.Mother       WorldVolume
-
-//Eastern Concrete wall
-//10 cm long in x
-//5 m long in y
-//10 m tall in z
-Volume EastWall
-EastWall.Material     Concrete
-EastWall.Shape        BRIK  5 250 500
-EastWall.Position     250 -5 500
-EastWall.Visibility   1
-EastWall.Color        6
-EastWall.Mother       WorldVolume
 
 //Modeling the BlackBodyAbsorber
 //10 m tall Cylindrical Absorber 7.5 m from Source, Height centered on Source
@@ -86,4 +49,4 @@ TN01.TriggerByChannel true
 TN01.Detector BBScint 1
 
 //modeling a fake source
-//source.Position 0.0 0.0 250.0
+//source.Position 0.0 0.0 500.0
