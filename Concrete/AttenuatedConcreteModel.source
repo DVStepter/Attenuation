@@ -11,6 +11,7 @@ PhysicsListEM                    Livermore
 StoreSimulationInfo                  true
 StoreSimulationInfoIonization        false
 StoreOnlyTriggeredEvents             false
+StoreOneHitPerEvent                  true
 DiscretizeHits                       true
 
 BlackAbsorber BBdetector
@@ -20,10 +21,11 @@ Run AttenuatedConcreteModel
 AttenuatedConcreteModel.FileName             AttenuatedConcreteModel
 AttenuatedConcreteModel.Events               3000000
 
+
 //AttenuatedConcreteModel.Source Co60_1173
 //Co60_1173.ParticleType    1
 //Co60_1173.Beam            PointSource 0.0 0.0 500.0
-//Co60_1173.Spectrum        Mono 1173.2
+//Co60_1173.Spectrum        Mono 1173.228
 //Co60_1173.Flux            37000   //1 micro curie source
 
 AttenuatedConcreteModel.Source Co60_1332
@@ -35,5 +37,11 @@ Co60_1332.Flux              37000   //1 micro curie source
 //AttenuatedConcreteModel.Source Cs137_662
 //Cs137_662.ParticleType    1
 //Cs137_662.Beam            PointSource  0.0 0.0 500.0
-//Cs137_662.Spectrum        Mono 661.6
+//Cs137_662.Spectrum        Mono 661.657
 //Cs137_662.Flux            37000   //1 micro curie source
+
+//AttenuatedConcreteModel.Source Am241_59
+//Am241_59.ParticleType    1
+//Am241_59.Beam            PointSource  0.0 0.0 500.0
+//Am241_59.Spectrum        Mono 59.5409
+//Am241_59.Flux            37000   //1 micro curie source

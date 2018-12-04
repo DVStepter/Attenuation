@@ -17,10 +17,10 @@ WorldVolume.Mother      0
 //10 m tall Cylindrical Wall 2.5 m from Source, 10 cm thick
 Volume                Wall
 Wall.Material Concrete
-Wall.Shape TUBS 250 260 500.0 0.0 360.0
+Wall.Shape TUBS 250 270.0 500.0 0.0 360.0
 Wall.Position 0.0 0.0 500.0
 Wall.Visibility 1
-Wall.Color 4
+Wall.Color 6
 Wall.Mother WorldVolume
 
 
