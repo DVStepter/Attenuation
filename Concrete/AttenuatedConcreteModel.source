@@ -19,7 +19,7 @@ BlackAbsorber BBdetector
 # Run & source parameters
 Run AttenuatedConcreteModel
 AttenuatedConcreteModel.FileName             AttenuatedConcreteModel
-AttenuatedConcreteModel.Events               3000000
+AttenuatedConcreteModel.Events               1000000
 
 
 //AttenuatedConcreteModel.Source Co60_1173
