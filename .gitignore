@@ -21,3 +21,4 @@ data/*
 
 #Sim Files
 *.sim
+*.npy
