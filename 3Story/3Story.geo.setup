@@ -1,0 +1,216 @@
+// Gamma attenuation
+
+Name 3Story
+Version 1.0
+
+SurroundingSphere 3000. 0.0 0.0 0.0 3000.
+Include $(MEGALIB)/resource/examples/geomega/materials/Materials.geo
+// Universe volume
+Volume WorldVolume
+WorldVolume.Material    Vacuum
+WorldVolume.Shape       BRIK 1500 1500 1500 //Cube inside sphere side length 1154 cm - 37.8 ft
+WorldVolume.Visibility  0
+WorldVolume.Color       1
+WorldVolume.Mother      0
+
+//Asphalt Slab
+//Building in the +x direction
+//Center of Top of Slab is 0 0 0
+//20 m long in x
+//20 m long in y
+//0.5 m deep in z
+Volume                Slab
+Slab.Material         Asphalt
+Slab.Shape            BRIK 1000 1000 25
+Slab.Position         0.00 0.00 -25
+Slab.Visibility       1
+Slab.Color            12
+Slab.Mother           WorldVolume
+
+//2nd Floor
+//Center of floor is 0 0 295
+//6 m long in x
+//6 m long in y
+//10 cm deep in z
+Volume                Floor
+Floor.Material        Concrete
+Floor.Shape           BRIK 300 300 5
+Floor.Position        0.00 0.00 295
+Floor.Visibility      1
+Floor.Color           6
+Floor.Mother          WorldVolume
+
+//3rd Floor
+//Center of floor is 0 0 595
+//6 m long in x
+//6 m long in y
+//10 cm deep in z
+Volume                2Floor
+2Floor.Material        Concrete
+2Floor.Shape           BRIK 300 300 5
+2Floor.Position        0.00 0.00 595
+2Floor.Visibility      1
+2Floor.Color           6
+2Floor.Mother          WorldVolume
+
+//Roof
+//Center of roof is 0 0 895
+//6 m long in x
+//6 m long in y
+//10 cm deep in z
+Volume                Roof
+Roof.Material        Concrete
+Roof.Shape           BRIK 300 300 5
+Roof.Position        0.00 0.00 895
+Roof.Visibility      1
+Roof.Color           6
+Roof.Mother          WorldVolume
+
+//Northern Concrete wall
+//6.1 m long in x
+//10 cm long in y
+//9 m tall in z
+Volume                NorthWall
+NorthWall.Material    Concrete
+NorthWall.Shape       BRIK  305.0 5.0 450
+NorthWall.Position    5 305 450
+NorthWall.Visibility  1
+NorthWall.Color       6
+NorthWall.Mother      WorldVolume
+
+//Southern Concrete wall West
+//2.6 m long in x
+//10 cm long in y
+//3 m tall in z
+Volume                SouthWall1
+SouthWall1.Material    Concrete
+SouthWall1.Shape       BRIK 130.0 5.0 150
+SouthWall1.Position    -180 -305 150
+SouthWall1.Visibility  1
+SouthWall1.Color       6
+SouthWall1.Mother      WorldVolume
+
+//Southern Concrete wall East
+//2.5 m long in x
+//10 cm long in y
+//3 m tall in z
+Volume                SouthWall2
+SouthWall2.Material    Concrete
+SouthWall2.Shape       BRIK 125.0 5.0 150
+SouthWall2.Position    175 -305 150
+SouthWall2.Visibility  1
+SouthWall2.Color       6
+SouthWall2.Mother      WorldVolume
+
+//Southern Concrete wall topdoor
+//1 m long in x
+//10 cm long in y
+//50 cm tall in z
+Volume                SouthWall3
+SouthWall3.Material    Concrete
+SouthWall3.Shape       BRIK 50.0 5.0 25
+SouthWall3.Position    0 -305 275
+SouthWall3.Visibility  1
+SouthWall3.Color       6
+SouthWall3.Mother      WorldVolume
+
+//Southern Concrete wall 2nd&3rd Floor
+//6.1 m long in x
+//10 cm long in y
+// 6 m tall in z
+Volume                 SouthWall4
+SouthWall4.Material    Concrete
+SouthWall4.Shape       BRIK 305 5.0 300
+SouthWall4.Position    -5 -305 600
+SouthWall4.Visibility  1
+SouthWall4.Color       6
+SouthWall4.Mother      WorldVolume
+
+//Western Concrete wall
+//10 cm long in x
+//6.1 m long in y
+//9 m tall in z
+Volume                 WestWall1
+WestWall1.Material     Concrete
+WestWall1.Shape        BRIK  5 305 450
+WestWall1.Position     -305  5 450
+WestWall1.Visibility   1
+WestWall1.Color        6
+WestWall1.Mother       WorldVolume
+
+
+//Eastern Concrete wall
+//10 cm long in x
+//6.1 m long in y
+//9 m tall in z
+Volume                 EastWall1
+EastWall1.Material     Concrete
+EastWall1.Shape        BRIK  5 305 450
+EastWall1.Position     305 -5 450
+EastWall1.Visibility   1
+EastWall1.Color        6
+EastWall1.Mother       WorldVolume
+
+//2nd Floor Center wall 2ndFlCenter
+//10 cm long in x
+//6 m long in y
+//2.9 m tall in z
+Volume                 2ndFlCenter
+2ndFlCenter.Material    Concrete
+2ndFlCenter.Shape       BRIK 5 300 145
+2ndFlCenter.Position    0 0 445
+2ndFlCenter.Visibility  1
+2ndFlCenter.Color       6
+2ndFlCenter.Mother      WorldVolume
+
+//2nd Floor Left wall 2ndFlLeft
+//295 cm long in x
+//10 cm long in y
+//2.9 m tall in z
+Volume                 2ndFlLeft
+2ndFlLeft.Material    Concrete
+2ndFlLeft.Shape       BRIK 147.5 5 145
+2ndFlLeft.Position    -152.5 0 445
+2ndFlLeft.Visibility  1
+2ndFlLeft.Color       6
+2ndFlLeft.Mother      WorldVolume
+
+//2nd Floor Right wall 2ndFlRight
+//295 cm long in x
+//10 cm long in y
+//2.9 m tall in z
+Volume                 2ndFlRight
+2ndFlRight.Material    Concrete
+2ndFlRight.Shape       BRIK 147.5 5 145
+2ndFlRight.Position    152.5 0 445
+2ndFlRight.Visibility  1
+2ndFlRight.Color       6
+2ndFlRight.Mother      WorldVolume
+
+
+//Modeling the BlackBodyAbsorber
+//14 m tall Cylindrical Absorber 10 m from Source, Height centered on Source
+Volume BBdetector
+BBdetector.Material NaI
+BBdetector.Shape TUBS 500 500.1 700.0 0.0 360.0
+BBdetector.Position 0.0 0.0 700.0
+BBdetector.Visibility 1
+BBdetector.Color 7
+BBdetector.Mother WorldVolume
+
+//BlackBodyAbsorber Characteristics
+Scintillator                BBScint
+BBScint.DetectorVolume      BBdetector
+BBScint.SensitiveVolume     BBdetector
+BBScint.NoiseThreshold      0.000001
+BBScint.TriggerThreshold    0.000001
+BBScint.EnergyResolution    ideal
+BBScint.FailureRate         0.0
+
+Trigger TN01
+TN01.Veto false
+TN01.TriggerByChannel true
+TN01.Detector BBScint 1
+
+//modeling a fake source
+//source.Position 0.0 0.0 255.0

@@ -1,0 +1,54 @@
+# Global parameters:
+Version               1
+Geometry              3Story.geo.setup
+CheckForOverlaps      1000       0.0001
+
+# Physics list
+PhysicsListEM                    Livermore
+
+# Output formats
+#StoreCalibrated                     true
+StoreSimulationInfo                  true
+StoreSimulationInfoIonization        false
+StoreOnlyTriggeredEvents             false
+StoreOneHitPerEvent                  true
+DiscretizeHits                       true
+
+BlackAbsorber BBdetector
+BlackAbsorber BBdetector2
+
+# Run & source parameters
+Run 3Story
+3Story.FileName             3Story
+3Story.Events               6000000
+
+
+//3Story.Source Co60_1173
+//Co60_1173.ParticleType    1
+//Co60_1173.Beam            PointSource 0.0 0.0 260.0
+//Co60_1173.Spectrum        Mono 1173.228
+//Co60_1173.Flux            37000   //1 micro curie source
+
+3Story.Source Co60_1332
+Co60_1332.ParticleType      1
+Co60_1332.Beam              PointSource  250.0 -250.0 850.0
+Co60_1332.Spectrum          Mono 1332.492
+Co60_1332.Flux              37000   //1 micro curie source
+
+//3Story.Source Co60_1332-2
+//Co60_1332-2.ParticleType      1
+//Co60_1332-2.Beam              PointSource  150.0 -150.0 150.0
+//Co60_1332-2.Spectrum          Mono 1332.492
+//Co60_1332-2.Flux              37000   //1 micro curie source
+
+//3Story.Source Cs137_662
+//Cs137_662.ParticleType    1
+//Cs137_662.Beam            PointSource  0.0 0.0 260.0
+//Cs137_662.Spectrum        Mono 661.657
+//Cs137_662.Flux            37000   //1 micro curie source
+
+//3Story.Source Am241_59
+//Am241_59.ParticleType    1
+//Am241_59.Beam            PointSource  0.0 0.0 260.0
+//Am241_59.Spectrum        Mono 59.5409
+//Am241_59.Flux            37000   //1 micro curie source

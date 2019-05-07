@@ -235,7 +235,7 @@ WestWall8.Mother      WorldVolume
 
 //Eastern Concrete wall bottom
 //10 cm long in x
-//6 m long in y
+//6.1 m long in y
 //3 m tall in z
 Volume                EastWall1
 EastWall1.Material     Concrete
