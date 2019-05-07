@@ -1,0 +1,38 @@
+\subsection{Simulating Quantification}
+\noindent A method for quantification on a mobile detection platform has yet to be achieved. However, through simulation, a quantified flux can be derived and the benefits of quantification can be thoroughly explored. The steps to produce a quantified surface flux are as follows:
+
+\begin{enumerate}
+	\item Run Simulation
+	\item Parse simulation output for interactions of interest (detector hits)
+	\item Back-project detector hit to last interaction in material (scattered) or to source (full transmission)
+  \item Determine where particles exited building surface
+  \item Subdivide surface to produce quantified surface flux
+\end{enumerate}
+
+\subsection{Localization}
+\noindent Because gammas are generated isotropically when they hit a plane they will produce a circular "hot spot." The point on the plane normal to the source will see the greatest transmission and transmission will reduce radially as the attenuation length increases with the reduction in incident angle. For this reason a circular fit is used to localize the source. The steps to localize are as follows:
+
+\begin{enumerate}
+	\item Implement Canny Edge Finding Algorithm on each wall\cite{canny}
+  \begin{enumerate}
+  	\item Apply Gaussian filter to smooth the image in order to remove the noise
+  	\item Find the intensity gradients of the image
+  	\item Thin edges to 1-pixel be removing non-maximum pixels of the gradient
+    \item Suppress weak edges
+  \end{enumerate}
+	\item Conduct Random Sample Consensus (RANSAC) fit to circular model to each wall\cite{ransac}
+  \begin{enumerate}
+  	\item Select a random subset of the original data (hypothetical inliers)
+  	\item Fit circular circular model to hypothetical inliers
+  	\item Test remaining data to circular model
+    \item Those points that fit the estimated model well are considered as part of the consensus set
+    \item Re-estimate model using all members of the consensus set
+    \item The center of the circular model is the estimated source location on that plane
+  \end{enumerate}
+  \item Calculate line segments connecting estimated source location for East/West and North/South planes
+  \item Estimated source location is line intersection or midpoint of shortest distance between lines
+\end{enumerate}
+
+\subsection{Hypothesis}
+\noindent
+It hypothesized that gating on full source energy will produce a smaller hot spot on which to localize and therefore will provide a more accurate source location than total counts. Additionally, the simulations closest to the walls would exhibit less radial dispersal than simulations closer to the center of the building and therefore will provide more accurate source locations.
