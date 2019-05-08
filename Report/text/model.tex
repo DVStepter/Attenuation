@@ -10,8 +10,47 @@
 
 Fig. \ref{fig:MEGAlib} displays the work flow of a MEGAlib simulation. In addition to MEGAlib, extensive python coding is required to parse the sim file, quantify surface flux, and localize sources.
 
+\subsection{Sim Parsing}
+\noindent For each gamma generated the sim file contains data on:
+
+\begin{enumerate}
+	\item Type of interaction
+  \item ID of this interaction
+  \item ID of interaction this particle originated from
+  \item Type of detector
+  \item Time since start of event in seconds
+  \item x position of interaction in cm
+  \item y position of interaction in cm
+  \item z position of interaction in cm
+  \item Original particle type
+  \item New x direction of original particle
+  \item New y direction of original particle
+  \item New z direction of original particle
+  \item New x polarization of original particle
+  \item New y polarization of original particle
+  \item New z polarization of original particle
+  \item New kinetic energy of original particle in keV
+  \item New particle type
+  \item x direction of new particle
+  \item y direction of new particle
+  \item z direction of new particle
+  \item x polarization of new particle
+  \item y polarization of new particle
+  \item z polarization of new particle
+  \item Kinetic energy of new particle in keV
+\end{enumerate}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\columnwidth]{images/cosima}
+  \caption{Section of simulation output file}
+  \label{fig:cosima}
+\end{figure}
+
+Fig. \ref{fig:cosima} shows the simulated output for two gammas. The first gamma generates eight Compton scattering event and to photo electric effect events. The second gamma has no interactions and hits the detector (BLAK). The simulation output files are on the order of 20 GB for a six million gamma run and are too large to analyze. A python script was developed to parse the simulation output for usable information (highlighted in Fig. \ref{fig:cosima}). The parser looks for hit in the detector (BLAK) and saves the location of detector hit and energy. Then the parser looks for originating interaction and saves location of particle origin. The parser output file is on the order of 80 MB, a drastic reduction in size.
+
 \subsection{Simulating Camp Roberts}
-The intended model is a detector system mounted on a UAS conducting a flight around a target building. In addition to unknown source, activity, and location, the geometry and material composition of the buildings at Camp Roberts are also unknown. Moreover, distance and lack of access made measuring and material sampling an unfeasible option. Instead, a standard three story concreter building on an asphalt slab was modeled using ASTM Building and Construction Standards. Material composition of concrete and asphalt were modeled using the Pacific Northwest National Laboratory Compendium of Material Composition for Radiation Transport Modeling \cite{compendium}. Tables \ref{table:concrete} and \ref{table:asphalt} show the material composition of concrete and asphalt.
+\noindent The intended model is a detector system mounted on a UAS conducting a flight around a target building. In addition to unknown source, activity, and location, the geometry and material composition of the buildings at Camp Roberts are also unknown. Moreover, distance and lack of access made measuring and material sampling an unfeasible option. Instead, a standard three story concreter building on an asphalt slab was modeled using ASTM Building and Construction Standards. Material composition of concrete and asphalt were modeled using the Pacific Northwest National Laboratory Compendium of Material Composition for Radiation Transport Modeling \cite{compendium}. Tables \ref{table:concrete} and \ref{table:asphalt} show the material composition of concrete and asphalt.
 
 \begin{table}[!htp]
  \caption{Material Composition of Concrete}
