@@ -20,7 +20,7 @@ BlackAbsorber BBdetector2
 # Run & source parameters
 Run 3Story
 3Story.FileName             3Story
-3Story.Events               6000000
+3Story.Events               100000
 
 
 //3Story.Source Co60_1173
